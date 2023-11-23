@@ -48,7 +48,7 @@ export const Filter = ({ getLogsApi }) => {
   };
   return (
     <>
-      <div className="flex gap-4 py-4 items-center justify-end">
+      <div className="flex flex-col md:flex-row gap-4 py-4 items-center md:justify-end">
         <Button type={firstButton && "selected"} onClick={select24Hours}>
           Select Last 24 Hours
         </Button>

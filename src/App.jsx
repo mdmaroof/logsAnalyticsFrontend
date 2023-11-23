@@ -16,7 +16,7 @@ function App() {
   const getLogsApi = async (filter) => {
     try {
       const responseCall = await fetch(
-        "http://localhost:5000/logs?" +
+        "https://starfish-app-fubfy.ondigitalocean.app/logs?" +
           new URLSearchParams({
             ...filter,
           })
@@ -27,7 +27,7 @@ function App() {
       setPayload({ totalUserUnique, totalFailedApi, totalApi });
       setData(response);
     } catch (err) {
-      alert("Error");
+      console.log("Error");
     }
   };
 
@@ -40,12 +40,12 @@ function App() {
   const generateLogSuccess = async () => {
     const id = getRandomInteger();
     try {
-      const responseCall = await fetch(`http://localhost:5000/api/${id}`);
+      const responseCall = await fetch(`https://starfish-app-fubfy.ondigitalocean.app/api/${id}`);
       const data = await responseCall.json();
       console.log(data);
       getLogsApi();
     } catch (err) {
-      alert("Error");
+      console.log("Error");
     }
   };
 
@@ -53,13 +53,13 @@ function App() {
     const id = getRandomInteger();
     try {
       const responseCall = await fetch(
-        `http://localhost:5000/api/${id}/failed`
+        `https://starfish-app-fubfy.ondigitalocean.app/api/${id}/failed`
       );
       const data = await responseCall.json();
       console.log(data);
       getLogsApi();
     } catch (err) {
-      alert("Error");
+      console.log("Error");
     }
   };
 
@@ -87,7 +87,7 @@ function App() {
         <Card heading="Total number of failures API" value={totalFailedApi} />
       </div>
 
-      <div className="flex flex-col md:flex-row gap-3 md:gap-4 mt-6">
+      <div className="flex flex-col-reverse md:flex-row gap-3 md:gap-4 mt-6">
         {payload && (
           <ChartLayout
             totalUserUnique={totalUserUnique}
@@ -96,7 +96,7 @@ function App() {
           />
         )}
 
-        <div className="flex-1 h-[400px] overflow-y-scroll relative">
+        <div className="md:flex-1 h-[300px] md:h-[400px] overflow-y-scroll relative mx-[-10px]">
           <Table data={data} />
         </div>
       </div>
